@@ -31,24 +31,35 @@ body { background: var(--dark); font-family: var(--body); overflow-x: hidden; mi
 .grid-card { background: var(--card-bg); border-radius: 22px; position: relative; overflow: hidden; box-shadow: 0 28px 72px rgba(0,0,0,0.5), 0 0 0 1px rgba(196,81,58,0.12); }
 .grid-card::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; z-index: 0; }
 .grid-card > * { position: relative; z-index: 1; }
-.hero-section { min-height: 100vh; display:flex; align-items:center; justify-content:center; padding: 40px 32px; }
-.hero-card { width:100%; max-width:940px; }
-.card-nav { display: flex; align-items: center; justify-content: center; gap: 44px; padding: 28px 40px 18px; }
-.nav-smiley { font-size: 22px; animation: wiggle 4s ease-in-out infinite; cursor:default; }
+
+/* ===== SPLIT HERO (new) ===== */
+.split-hero { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px 32px; }
+.split-card { width:100%; max-width:1100px; }
+.split-nav { display: flex; align-items: center; justify-content: center; gap: 44px; padding: 28px 40px; background: var(--card-bg); }
+.split-nav .nav-smiley { font-size: 22px; animation: wiggle 4s ease-in-out infinite; }
 @keyframes wiggle { 0%,100%{transform:rotate(-6deg)} 50%{transform:rotate(6deg)} }
-.card-nav a { font-family: var(--handwriting); font-size: 21px; font-weight: 500; color: var(--terra); text-decoration: none; transition: opacity 0.2s; }
-.card-nav a:hover { opacity: 0.7; }
-.hero-body { display: grid; grid-template-columns: 1fr 1fr; align-items: flex-end; padding: 24px 56px 0; min-height: 460px; }
-.hero-left { padding-bottom: 56px; }
-.hero-name { font-family: var(--handwriting); font-size: 78px; font-weight: 700; color: var(--terra); line-height: 1; margin-bottom: 6px; letter-spacing: -1px; }
-.hero-role { font-family: var(--body); font-size: 13px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra); opacity: 0.65; margin-bottom: 28px; }
-.hero-tagline { font-family: var(--serif); font-size: 46px; line-height: 1.12; color: var(--terra2); font-weight: 500; margin-bottom: 24px; }
-.hero-tagline em { font-style: italic; font-weight: 700; color: var(--terra); }
-.hero-location { font-family: var(--handwriting); font-size: 18px; color: var(--terra); opacity: 0.7; }
-.hero-right { display:flex; align-items:flex-end; justify-content:center; gap: 20px; }
-.hero-illustration { width:100%; max-width:250px; }
-.profile-photo-container { width: 160px; height: 160px; border-radius: 50%; overflow: hidden; border: 4px solid var(--terra); box-shadow: 0 10px 30px rgba(0,0,0,0.3); flex-shrink: 0; }
-.profile-photo { width: 100%; height: 100%; object-fit: cover; }
+.split-nav a { font-family: var(--handwriting); font-size: 21px; font-weight: 500; color: var(--terra); text-decoration: none; transition: opacity 0.2s; }
+.split-nav a:hover { opacity: 0.7; }
+.split-grid { display:grid; grid-template-columns:1fr 1fr; min-height:520px; }
+.split-half { padding:60px 48px; display:flex; flex-direction:column; justify-content:center; position:relative; }
+.split-half.left { background:var(--dark2); }
+.split-half.right { background:var(--card-bg); border-left:2px dashed rgba(196,81,58,0.3); }
+.split-word { font-family:var(--handwriting); font-size:64px; font-weight:700; line-height:1; margin-bottom:18px; }
+.split-half.left .split-word { color:var(--cream); }
+.split-half.right .split-word { font-family:'Courier New',monospace; color:var(--terra); font-weight:700; }
+.split-sub { font-family:var(--body); font-size:15px; line-height:1.6; margin-bottom:24px; }
+.split-half.left .split-sub { color:rgba(247,240,228,0.75); }
+.split-half.right .split-sub { color:#7a4a38; }
+.split-location { font-family:var(--handwriting); font-size:17px; }
+.split-half.left .split-location { color:rgba(247,240,228,0.55); }
+.split-half.right .split-location { color:var(--terra); opacity:0.7; }
+/* photo slot — add your image src here when ready */
+.split-photo-container { width: 130px; height: 130px; border-radius: 50%; overflow: hidden; border: 3px solid var(--terra); box-shadow: 0 10px 30px rgba(0,0,0,0.3); position:absolute; bottom:40px; right:48px; }
+.split-half.left .split-photo-container { border-color: var(--cream); }
+.split-photo { width: 100%; height: 100%; object-fit: cover; display:block; }
+@media (max-width:900px){ .split-grid{grid-template-columns:1fr;} .split-half.right{border-left:none; border-top:2px dashed rgba(196,81,58,0.3);} .split-photo-container{position:static; margin-top:20px;} }
+/* ===== END SPLIT HERO ===== */
+
 .marquee-wrap { background: var(--terra); overflow: hidden; }
 .marquee-inner { display:flex; animation: mq 22s linear infinite; width:max-content; }
 .marquee-item { font-family: var(--handwriting); font-size: 19px; font-weight: 600; color: var(--cream); padding: 12px 30px; white-space:nowrap; border-right: 1px solid rgba(242,232,217,0.22); display:flex; align-items:center; gap:8px; }
@@ -101,8 +112,6 @@ body { background: var(--dark); font-family: var(--body); overflow-x: hidden; mi
 @media (max-width:900px) {
   .side-strip { display:none; }
   .page-wrapper { margin:0; }
-  .hero-body { grid-template-columns:1fr; padding:16px 24px 0; }
-  .hero-right { justify-content: flex-start; }
   .skills-grid, .repos-grid, .links-grid { grid-template-columns:1fr; }
   .exp-card { grid-template-columns:1fr; }
   .section-inner { padding:36px 24px; }
@@ -114,27 +123,29 @@ body { background: var(--dark); font-family: var(--body); overflow-x: hidden; mi
 
 <div class="page-wrapper">
 
-  <!-- HERO -->
-  <section class="hero-section">
-    <div class="hero-card grid-card">
-      <nav class="card-nav">
+  <!-- SPLIT HERO -->
+  <section class="split-hero">
+    <div class="split-card grid-card">
+      <nav class="split-nav">
         <span class="nav-smiley">☺</span>
         <a href="#about">about</a>
         <a href="#work">Work</a>
         <a href="#connect">Connect</a>
       </nav>
-      <div class="hero-body">
-        <div class="hero-left">
-          <div class="hero-name">Sameer</div>
-          <div class="hero-role">AI Engineer · SaaS Builder · Automation Specialist</div>
-          <div class="hero-tagline">Code should<br>feel <em>intelligent</em></div>
-          <div class="hero-location">Kathmandu • GMT +5:45</div>
-        </div>
-        <div class="hero-right">
-          <!-- REPLACE src BELOW with your uploaded photo path -->
-          <div class="profile-photo-container">
-           <img src="IMG-20250414-WA0010.jpg" alt="Sameer Ray" class="profile-photo">
+      <div class="split-grid">
+        <div class="split-half left">
+          <div class="split-word">builder</div>
+          <p class="split-sub">Solo founder who's shipped a full SaaS platform end to end — schema, backend, AI pipelines, admin tooling. No hand-holding needed.</p>
+          <div class="split-location">Kathmandu • GMT +5:45</div>
+          <!-- ADD YOUR PHOTO HERE: replace src -->
+          <div class="split-photo-container">
+            <img src="YOUR-PHOTO-HERE.jpg" alt="Sameer Ray" class="split-photo">
           </div>
+        </div>
+        <div class="split-half right">
+          <div class="split-word">&lt;engineer&gt;</div>
+          <p class="split-sub">AI/ML systems, agentic pipelines, RAG. Python-first, ships clean, tests things, doesn't leave code that breaks at 2am.</p>
+          <div class="split-location">Automation Specialist</div>
         </div>
       </div>
     </div>
@@ -165,7 +176,6 @@ body { background: var(--dark); font-family: var(--body); overflow-x: hidden; mi
         <button class="tab-btn" onclick="openTab(event, 'TabLinks')">🔗 Links</button>
       </div>
 
-      <!-- TAB 1: GITHUB REPOS (codezoner-portal removed — see note below on privacy) -->
       <div id="TabRepos" class="tab-content active">
         <div class="repos-grid">
           <a href="https://github.com/s1meer/appdrop" target="_blank" class="repo-card">
@@ -201,7 +211,6 @@ body { background: var(--dark); font-family: var(--body); overflow-x: hidden; mi
         </div>
       </div>
 
-      <!-- TAB 2: WORK EXPERIENCE — corrected dates/titles/spelling -->
       <div id="TabExperience" class="tab-content">
         <div class="exp-list">
           <div class="exp-card">
@@ -231,7 +240,6 @@ body { background: var(--dark); font-family: var(--body); overflow-x: hidden; mi
         </div>
       </div>
 
-      <!-- TAB 3: LINKS — codezoner.in added -->
       <div id="TabLinks" class="tab-content">
         <div class="links-grid">
           <a href="https://github.com/s1meer" target="_blank" class="link-card">
