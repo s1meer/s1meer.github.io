@@ -1,327 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sameer Ray — AI Engineer</title>
-<meta name="description" content="Sameer Ray — AI Engineer, SaaS Builder, Automation Specialist based in Kathmandu, Nepal."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
-<style>
-:root {
-  --dark: #110c0a;
-  --dark2: #1a1210;
-  --card-bg: #f2e8d9;
-  --terra: #c4513a;
-  --terra2: #a8412d;
-  --cream: #f7f0e4;
-  --grid-color: rgba(180,200,230,0.35);
-  --handwriting: 'Caveat', cursive;
-  --serif: 'Lora', Georgia, serif;
-  --body: 'DM Sans', sans-serif;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--dark); font-family: var(--body); overflow-x: hidden; min-height: 100vh; }
-.side-strip { position: fixed; top: 0; bottom: 0; width: 88px; z-index: 10; display: flex; flex-direction: column; overflow: hidden; }
-.side-strip.left { left: 0; }
-.side-strip.right { right: 0; }
-.page-wrapper { margin: 0 88px; }
-.grid-card { background: var(--card-bg); border-radius: 22px; position: relative; overflow: hidden; box-shadow: 0 28px 72px rgba(0,0,0,0.5), 0 0 0 1px rgba(196,81,58,0.12); }
-.grid-card::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; z-index: 0; }
-.grid-card > * { position: relative; z-index: 1; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sameer Ray — AI Engineer</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium" rel="stylesheet" type="text/css" />
+  <link href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg" rel="stylesheet" type="text/css" />
 
-/* ===== SPLIT HERO (new) ===== */
-.split-hero { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px 32px; }
-.split-card { width:100%; max-width:1100px; }
-.split-nav { display: flex; align-items: center; justify-content: center; gap: 44px; padding: 28px 40px; background: var(--card-bg); }
-.split-nav .nav-smiley { font-size: 22px; animation: wiggle 4s ease-in-out infinite; }
-@keyframes wiggle { 0%,100%{transform:rotate(-6deg)} 50%{transform:rotate(6deg)} }
-.split-nav a { font-family: var(--handwriting); font-size: 21px; font-weight: 500; color: var(--terra); text-decoration: none; transition: opacity 0.2s; }
-.split-nav a:hover { opacity: 0.7; }
-.split-grid { display:grid; grid-template-columns:1fr 1fr; min-height:520px; }
-.split-half { padding:60px 48px; display:flex; flex-direction:column; justify-content:center; position:relative; }
-.split-half.left { background:var(--dark2); }
-.split-half.right { background:var(--card-bg); border-left:2px dashed rgba(196,81,58,0.3); }
-.split-word { font-family:var(--handwriting); font-size:64px; font-weight:700; line-height:1; margin-bottom:18px; }
-.split-half.left .split-word { color:var(--cream); }
-.split-half.right .split-word { font-family:'Courier New',monospace; color:var(--terra); font-weight:700; }
-.split-sub { font-family:var(--body); font-size:15px; line-height:1.6; margin-bottom:24px; }
-.split-half.left .split-sub { color:rgba(247,240,228,0.75); }
-.split-half.right .split-sub { color:#7a4a38; }
-.split-location { font-family:var(--handwriting); font-size:17px; }
-.split-half.left .split-location { color:rgba(247,240,228,0.55); }
-.split-half.right .split-location { color:var(--terra); opacity:0.7; }
-/* photo slot — add your image src here when ready */
-.split-photo-container { width: 130px; height: 130px; border-radius: 50%; overflow: hidden; border: 3px solid var(--terra); box-shadow: 0 10px 30px rgba(0,0,0,0.3); position:absolute; bottom:40px; right:48px; }
-.split-half.left .split-photo-container { border-color: var(--cream); }
-.split-photo { width: 100%; height: 100%; object-fit: cover; display:block; }
-@media (max-width:900px){ .split-grid{grid-template-columns:1fr;} .split-half.right{border-left:none; border-top:2px dashed rgba(196,81,58,0.3);} .split-photo-container{position:static; margin-top:20px;} }
-/* ===== END SPLIT HERO ===== */
-
-.marquee-wrap { background: var(--terra); overflow: hidden; }
-.marquee-inner { display:flex; animation: mq 22s linear infinite; width:max-content; }
-.marquee-item { font-family: var(--handwriting); font-size: 19px; font-weight: 600; color: var(--cream); padding: 12px 30px; white-space:nowrap; border-right: 1px solid rgba(242,232,217,0.22); display:flex; align-items:center; gap:8px; }
-@keyframes mq { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-.section-wrap { padding: 0 32px 36px; }
-.section-inner { padding: 52px 52px; }
-.s-label { font-family:var(--handwriting); font-size:15px; color:var(--terra); opacity:0.65; margin-bottom:6px; letter-spacing:0.05em; }
-.s-title { font-family:var(--serif); font-size:40px; font-weight:600; color:var(--terra2); line-height:1.15; margin-bottom:40px; }
-.s-title em { font-style:italic; color:var(--terra); }
-.tab-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: 2px solid rgba(196,81,58,0.2); flex-wrap: wrap; }
-.tab-btn { font-family: var(--handwriting); font-size: 22px; font-weight: 600; color: var(--terra); opacity: 0.5; background: none; border: none; cursor: pointer; padding: 10px 20px; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.3s ease; }
-.tab-btn:hover { opacity: 0.8; }
-.tab-btn.active { opacity: 1; border-bottom-color: var(--terra); }
-.tab-content { display: none; animation: fadeIn 0.5s ease-in-out; }
-.tab-content.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.repos-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
-.repo-card { background:rgba(196,81,58,0.05); border:1.5px solid rgba(196,81,58,0.16); border-radius:12px; padding:20px; text-decoration:none; transition:all 0.2s; display:flex; flex-direction:column; gap:8px; }
-.repo-card:hover { background:rgba(196,81,58,0.1); border-color:var(--terra); transform: translateY(-3px); }
-.repo-head { display:flex; justify-content:space-between; align-items:center; }
-.repo-name { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--terra2); }
-.repo-icon { font-size: 20px; }
-.repo-meta { font-size: 12px; color: #7a4a38; opacity: 0.8; }
-.repo-link { font-family: var(--handwriting); font-size: 16px; color: var(--terra); margin-top: 5px; }
-.exp-list { display:flex; flex-direction:column; gap:14px; }
-.exp-card { background:rgba(196,81,58,0.05); border:1.5px solid rgba(196,81,58,0.16); border-radius:12px; padding:26px 30px; display:grid; grid-template-columns:170px 1fr; gap:22px; transition:background 0.2s, border-color 0.2s; }
-.exp-card:hover { background:rgba(196,81,58,0.09); border-color:var(--terra); }
-.exp-date { font-family:var(--handwriting); font-size:15px; color:var(--terra); opacity:0.65; line-height:1.6; }
-.exp-co { font-family:var(--handwriting); font-size:14px; font-weight:700; color:var(--terra); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px; }
-.exp-role { font-family:var(--serif); font-size:18px; color:var(--terra2); margin-bottom:8px; }
-.exp-desc { font-size:13px; line-height:1.7; color:#7a4a38; }
-.links-grid { display:grid; grid-template-columns:1fr 1fr; gap: 20px; }
-.link-card { display:flex; align-items:center; gap:16px; padding:20px; background:rgba(196,81,58,0.06); border:1.5px solid rgba(196,81,58,0.18); border-radius:12px; text-decoration:none; transition:all 0.2s; }
-.link-card:hover { background:rgba(196,81,58,0.12); border-color:var(--terra); transform:translateX(6px); }
-.link-icon { font-size: 28px; }
-.link-text h4 { font-family: var(--serif); font-size: 18px; color: var(--terra2); margin-bottom: 4px; }
-.link-text p { font-size: 13px; color: #7a4a38; }
-.skills-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-.skill-block { background:rgba(196,81,58,0.05); border:1.5px solid rgba(196,81,58,0.16); border-radius:12px; padding:22px; transition:background 0.2s, border-color 0.2s; }
-.skill-block:hover { background:rgba(196,81,58,0.09); border-color:var(--terra); }
-.skill-cat { font-family:var(--handwriting); font-size:20px; font-weight:600; color:var(--terra); margin-bottom:14px; }
-.tags { display:flex; flex-wrap:wrap; gap:8px; }
-.tag { font-size:12px; padding:4px 12px; border-radius:20px; background:rgba(196,81,58,0.1); color:var(--terra2); border:1px solid rgba(196,81,58,0.22); }
-.footer-bar { margin: 0 32px 40px; background: var(--card-bg); border-radius: 18px; padding: 26px 44px; display:flex; align-items:center; justify-content:space-between; position:relative; overflow:hidden; box-shadow: 0 14px 36px rgba(0,0,0,0.4); }
-.footer-bar > * { position:relative; z-index:1; }
-.footer-l { font-family:var(--handwriting); font-size:18px; color:var(--terra); }
-.footer-r { font-family:var(--handwriting); font-size:16px; color:var(--terra); opacity:0.6; }
-.reveal { opacity:0; transform:translateY(26px); transition:opacity 0.65s ease, transform 0.65s ease; }
-.reveal.in { opacity:1; transform:none; }
-@media (max-width:900px) {
-  .side-strip { display:none; }
-  .page-wrapper { margin:0; }
-  .skills-grid, .repos-grid, .links-grid { grid-template-columns:1fr; }
-  .exp-card { grid-template-columns:1fr; }
-  .section-inner { padding:36px 24px; }
-  .footer-bar { margin:0 12px 24px; flex-direction:column; gap:10px; text-align:center; }
-}
-</style>
+  <style>
+    :root {
+      --font-heading: 'HelveticaNowDisplay-Medium', 'Helvetica Neue', Arial, sans-serif;
+      --font-body: 'HelveticaNowDisplayW01-Rg', 'Helvetica Neue', Arial, sans-serif;
+    }
+    body {
+      font-family: var(--font-body);
+      background-color: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .font-heading {
+      font-family: var(--font-heading);
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .animate-blink {
+      animation: blink 1s step-end infinite;
+    }
+    /* Hide scrollbar for cleaner look */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
 </head>
-<body>
+<body class="relative min-h-screen w-full">
 
-<div class="page-wrapper">
+  <video
+    id="bg-video"
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260826_041744_63efcd78-bf7d-4039-99e2-2461e8a61903.mp4"
+    class="fixed inset-0 w-full h-full object-cover z-0"
+    style="object-position: 70% center;"
+    muted
+    playsinline
+    preload="auto"
+  ></video>
 
-  <!-- SPLIT HERO -->
-  <section class="split-hero">
-    <div class="split-card grid-card">
-      <nav class="split-nav">
-        <span class="nav-smiley">☺</span>
-        <a href="#about">about</a>
-        <a href="#work">Work</a>
-        <a href="#connect">Connect</a>
-      </nav>
-      <div class="split-grid">
-        <div class="split-half left">
-          <div class="split-word">builder</div>
-          <p class="split-sub">Solo founder who's shipped a full SaaS platform end to end — schema, backend, AI pipelines, admin tooling. No hand-holding needed.</p>
-          <div class="split-location">Kathmandu • GMT +5:45</div>
-          <!-- ADD YOUR PHOTO HERE: replace src -->
-          <div class="split-photo-container">
-           <img src="IMG-20250414-WA0010.jpg" alt="Sameer Ray" class="split-photo">
-          </div>
-        </div>
-        <div class="split-half right">
-          <div class="split-word">&lt;engineer&gt;</div>
-          <p class="split-sub">AI/ML systems, agentic pipelines, RAG. Python-first, ships clean, tests things, doesn't leave code that breaks at 2am.</p>
-          <div class="split-location">Automation Specialist</div>
-        </div>
-      </div>
+  <nav class="fixed top-0 w-full px-5 sm:px-8 py-4 sm:py-5 flex justify-between items-center z-10">
+    <div class="flex flex-row gap-3 items-center">
+      <span class="font-heading text-[21px] sm:text-[26px] tracking-tight text-white">
+        Sameer Ray®
+      </span>
+      <span class="text-[25px] sm:text-[30px] text-white select-none" style="letter-spacing: -0.02em;">
+        ✳︎
+      </span>
     </div>
-  </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-inner">
-      <div class="marquee-item">🇳🇵 Nepal born</div><div class="marquee-item">🤖 AI obsessed</div>
-      <div class="marquee-item">🌙 Night coder</div><div class="marquee-item">🐍 Python lover</div>
-      <div class="marquee-item">⚡ Automation first</div><div class="marquee-item">🛠️ Builder mindset</div>
-      <div class="marquee-item">🚀 Ship fast</div><div class="marquee-item">☕ Chai powered</div>
-      <div class="marquee-item">🧠 Always learning</div><div class="marquee-item">🌏 Remote ready</div>
-      <div class="marquee-item">🇳🇵 Nepal born</div><div class="marquee-item">🤖 AI obsessed</div>
-      <div class="marquee-item">🌙 Night coder</div><div class="marquee-item">🐍 Python lover</div>
+    <div class="hidden md:flex flex-row text-[23px] text-white">
+      <a href="#projects" class="hover:opacity-60 transition-opacity">Projects</a><span>,&nbsp;</span>
+      <a href="#experience" class="hover:opacity-60 transition-opacity">Experience</a><span>,&nbsp;</span>
+      <a href="#skills" class="hover:opacity-60 transition-opacity">Skills</a><span>,&nbsp;</span>
+      <a href="#github" class="hover:opacity-60 transition-opacity">GitHub</a>
     </div>
+
+    <a href="#contact" class="hidden md:block text-[23px] text-white underline underline-offset-2 hover:opacity-60 transition-opacity">
+      Get in touch
+    </a>
+
+    <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-[5px] z-50 relative">
+      <div id="bar-top" class="w-6 h-[2px] bg-white transition-transform duration-300"></div>
+      <div id="bar-mid" class="w-6 h-[2px] bg-white transition-opacity duration-300"></div>
+      <div id="bar-bot" class="w-6 h-[2px] bg-white transition-transform duration-300"></div>
+    </button>
+  </nav>
+
+  <div id="mobile-overlay" class="fixed inset-0 bg-black/90 backdrop-blur-md flex flex-col justify-center px-8 gap-8 transition-opacity duration-300 md:hidden z-[9] opacity-0 pointer-events-none">
+    <a href="#projects" class="text-[32px] font-medium text-white hover:opacity-60 transition-opacity">Projects</a>
+    <a href="#experience" class="text-[32px] font-medium text-white hover:opacity-60 transition-opacity">Experience</a>
+    <a href="#skills" class="text-[32px] font-medium text-white hover:opacity-60 transition-opacity">Skills</a>
+    <a href="#github" class="text-[32px] font-medium text-white hover:opacity-60 transition-opacity">GitHub</a>
+    <a href="#contact" class="text-[32px] font-medium text-white underline hover:opacity-60 transition-opacity">Get in touch</a>
   </div>
 
-  <!-- WORK / TAB SPLITTER SECTION -->
-  <section class="section-wrap" id="work">
-    <div class="grid-card section-inner reveal">
-      <div class="s-label">my portfolio</div>
-      <h2 class="s-title">Work, Repos & <em>Links</em></h2>
-
-      <div class="tab-nav">
-        <button class="tab-btn active" onclick="openTab(event, 'TabRepos')">💻 GitHub Repos</button>
-        <button class="tab-btn" onclick="openTab(event, 'TabExperience')">💼 Work Experience</button>
-        <button class="tab-btn" onclick="openTab(event, 'TabLinks')">🔗 Links</button>
+  <main class="h-screen w-full flex flex-col justify-end pb-12 md:justify-center md:pb-0 px-5 sm:px-8 md:px-10 overflow-hidden relative z-[1]">
+    <div class="max-w-xl relative z-10">
+      
+      <div class="pointer-events-none select-none mb-5 sm:mb-6 text-white" style="font-size: clamp(18px, 4vw, 26px); line-height: 1.3; font-weight: 400; filter: blur(4px);">
+        Hey there, I'm Sameer Ray,<br />
+        AI Engineer & Automation Specialist
       </div>
 
-      <div id="TabRepos" class="tab-content active">
-        <div class="repos-grid">
-          <a href="https://shikshahub.app/" target="_blank" class="repo-card">
-            <div class="repo-head"><span class="repo-name">ShikshaHub</span><span class="repo-icon">📚</span></div>
-            <div class="repo-meta">Bilingual (EN/Nepali) EdTech platform, grades 6-10 — quiz parser, live classes.</div>
-            <div class="repo-link">Visit Site →</div>
-          </a>
-          <a href="https://github.com/s1meer/appdrop" target="_blank" class="repo-card">
-            <div class="repo-head"><span class="repo-name">appdrop</span><span class="repo-icon">🚀</span></div>
-            <div class="repo-meta">Tauri/Rust + React desktop app, 255 automated tests.</div>
-            <div class="repo-link">View Repo →</div>
-          </a>
-          <a href="https://github.com/s1meer/nexmesh" target="_blank" class="repo-card">
-            <div class="repo-head"><span class="repo-name">nexmesh</span><span class="repo-icon">🕸️</span></div>
-            <div class="repo-meta">7,100-line distributed multi-agent system in Python.</div>
-            <div class="repo-link">View Repo →</div>
-          </a>
-          <a href="https://github.com/s1meer/nanollm" target="_blank" class="repo-card">
-            <div class="repo-head"><span class="repo-name">nanollm</span><span class="repo-icon">🧠</span></div>
-            <div class="repo-meta">Router + specialist small-LLM system, CPU-trainable.</div>
-            <div class="repo-link">View Repo →</div>
-          </a>
-          <a href="https://github.com/s1meer/NiyuktaHR" target="_blank" class="repo-card">
-            <div class="repo-head"><span class="repo-name">NiyuktaHR</span><span class="repo-icon">👥</span></div>
-            <div class="repo-meta">Nepal-focused HRIS — Express+TypeScript, React+Vite, Postgres+Drizzle.</div>
-            <div class="repo-link">View Repo →</div>
-          </a>
-          <a href="https://github.com/s1meer/kartvyahr" target="_blank" class="repo-card">
-            <div class="repo-head"><span class="repo-name">kartvyahr</span><span class="repo-icon">🏢</span></div>
-            <div class="repo-meta">Multi-tenant HRIS with Nepal payroll + biometric attendance.</div>
-            <div class="repo-link">View Repo →</div>
-          </a>
-          <a href="https://github.com/s1meer/VectorShift-Frontend-Technical-Assessment" target="_blank" class="repo-card">
-            <div class="repo-head"><span class="repo-name">VectorShift Assessment</span><span class="repo-icon">🔀</span></div>
-            <div class="repo-meta">React Flow pipeline builder + FastAPI DAG validation (Kahn's algorithm).</div>
-            <div class="repo-link">View Repo →</div>
-          </a>
-        </div>
-      </div>
+      <p class="text-white mb-5 sm:mb-6 min-h-[54px]" style="font-size: clamp(18px, 4vw, 26px); line-height: 1.35; font-weight: 400;">
+        <span id="typewriter-text"></span><span id="cursor" class="inline-block w-[2px] h-[1.1em] bg-white align-middle ml-[2px] animate-blink"></span>
+      </p>
 
-      <div id="TabExperience" class="tab-content">
-        <div class="exp-list">
-          <div class="exp-card">
-            <div class="exp-date">Dec 2025 – Present<br/>Contract, Remote</div>
-            <div>
-              <div class="exp-co">Invisible Technologies</div>
-              <div class="exp-role">Master Coding Specialist / AI Trainer</div>
-              <p class="exp-desc">Evaluate and improve AI-generated code outputs across multiple languages and frameworks. Work on AI training projects including prompt upleveling and SFT trajectory evaluation for coding agents.</p>
-            </div>
-          </div>
-          <div class="exp-card">
-            <div class="exp-date">Apr 2026 – Jul 2026<br/>Self-employed</div>
-            <div>
-              <div class="exp-co">CodeZoner</div>
-              <div class="exp-role">Founder & Platform Architect</div>
-              <p class="exp-desc">Built and architected a virtual internship SaaS platform for Indian college students — 81 programs, 1,785+ projects. Owned it solo: database schema, backend, admin tooling, AI-powered deduplication pipeline. <a href="https://codezoner.in" target="_blank" style="color:var(--terra);">codezoner.in ↗</a></p>
-            </div>
-          </div>
-          <div class="exp-card">
-            <div class="exp-date">Apr 2023 – Dec 2025<br/>2 yrs 9 mos, Full-time</div>
-            <div>
-              <div class="exp-co">WorldLink Communications (Enterprise 360)</div>
-              <div class="exp-role">MIS Analyst</div>
-              <p class="exp-desc">Built Python data pipelines and enterprise automation tooling. Started as an intern (Apr–Aug 2023) before moving into the full-time role.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="TabLinks" class="tab-content">
-        <div class="links-grid">
-          <a href="https://shikshahub.app/" target="_blank" class="link-card">
-            <span class="link-icon">📚</span>
-            <div class="link-text"><h4>ShikshaHub</h4><p>shikshahub.app — bilingual EdTech platform I built</p></div>
-          </a>
-          <a href="https://github.com/s1meer" target="_blank" class="link-card">
-            <span class="link-icon">🐙</span>
-            <div class="link-text"><h4>GitHub Profile</h4><p>github.com/s1meer</p></div>
-          </a>
-          <a href="https://codezoner.in" target="_blank" class="link-card">
-            <span class="link-icon">🎓</span>
-            <div class="link-text"><h4>CodeZoner</h4><p>codezoner.in — platform I founded & built</p></div>
-          </a>
-          <a href="https://www.linkedin.com/in/sameer-ray-5429a8199" target="_blank" class="link-card">
-            <span class="link-icon">💼</span>
-            <div class="link-text"><h4>LinkedIn</h4><p>View professional network & resume</p></div>
-          </a>
-          <a href="mailto:sameer.ray.work.official@gmail.com" class="link-card">
-            <span class="link-icon">✉️</span>
-            <div class="link-text"><h4>Email Me</h4><p>sameer.ray.work.official@gmail.com</p></div>
-          </a>
-          <a href="https://wa.me/9779800851725" target="_blank" class="link-card">
-            <span class="link-icon">💬</span>
-            <div class="link-text"><h4>WhatsApp</h4><p>+977 9800851725</p></div>
-          </a>
-        </div>
+      <div id="pill-container" class="flex flex-wrap gap-y-1 transition-all duration-500 ease-out opacity-0 translate-y-2">
+        <a href="#" class="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200">
+          Pitch an idea
+        </a>
+        <a href="https://codezoner.in" target="_blank" class="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200">
+          View CodeZoner
+        </a>
+        <a href="https://github.com/s1meer" target="_blank" class="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200">
+          See GitHub
+        </a>
+        
+        <button id="copy-email-btn" class="inline-flex items-center justify-center bg-transparent text-white border border-white rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap gap-2 sm:gap-3 hover:bg-white hover:text-black transition-colors duration-200 cursor-pointer">
+          <span>Reach me: <span class="underline underline-offset-1">sameer.ray.work.official@gmail.com</span></span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
       </div>
 
     </div>
-  </section>
+  </main>
 
-  <!-- SKILLS -->
-  <section class="section-wrap" id="skills">
-    <div class="grid-card section-inner reveal">
-      <div class="s-label">technical arsenal</div>
-      <h2 class="s-title">Tools I <em>build</em> with</h2>
-      <div class="skills-grid">
-        <div class="skill-block"><div class="skill-cat">🤖 AI / ML</div><div class="tags"><span class="tag">PyTorch</span><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">RAG</span><span class="tag">Hugging Face</span><span class="tag">Groq</span></div></div>
-        <div class="skill-block"><div class="skill-cat">🛠️ Backend</div><div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Django</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span></div></div>
-        <div class="skill-block"><div class="skill-cat">⚡ Frontend</div><div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Tauri</span></div></div>
-        <div class="skill-block"><div class="skill-cat">🔧 Tools & Infra</div><div class="tags"><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">AWS</span><span class="tag">GitHub Actions</span></div></div>
-      </div>
-    </div>
-  </section>
+  <script>
+    // 1. Mobile Menu Toggle
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const overlay = document.getElementById('mobile-overlay');
+    const barTop = document.getElementById('bar-top');
+    const barMid = document.getElementById('bar-mid');
+    const barBot = document.getElementById('bar-bot');
+    let isMenuOpen = false;
 
-  <!-- FOOTER -->
-  <div class="footer-bar reveal">
-    <div class="footer-l">© 2026 Sameer Ray. All rights reserved.</div>
-    <div class="footer-r">Built with ♥ in Kathmandu, Nepal</div>
-  </div>
+    menuBtn.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      if (isMenuOpen) {
+        overlay.classList.replace('opacity-0', 'opacity-100');
+        overlay.classList.replace('pointer-events-none', 'pointer-events-auto');
+        barTop.classList.add('rotate-45', 'translate-y-[7px]');
+        barMid.classList.add('opacity-0');
+        barBot.classList.add('-rotate-45', '-translate-y-[7px]');
+      } else {
+        overlay.classList.replace('opacity-100', 'opacity-0');
+        overlay.classList.replace('pointer-events-auto', 'pointer-events-none');
+        barTop.classList.remove('rotate-45', 'translate-y-[7px]');
+        barMid.classList.remove('opacity-0');
+        barBot.classList.remove('-rotate-45', '-translate-y-[7px]');
+      }
+    });
 
-</div>
+    // 2. Typewriter Effect
+    const textToType = "Glad you stopped in. I build agentic AI pipelines with Python, Node, and TypeScript. Now, what are we building?";
+    const typewriterDest = document.getElementById('typewriter-text');
+    const cursor = document.getElementById('cursor');
+    
+    setTimeout(() => {
+      let i = 0;
+      const typingInterval = setInterval(() => {
+        typewriterDest.textContent += textToType.charAt(i);
+        i++;
+        if (i >= textToType.length) {
+          clearInterval(typingInterval);
+          cursor.style.display = 'none'; // Hide cursor when done
+        }
+      }, 38);
+    }, 600); // 600ms start delay
 
-<script>
-const obs = new IntersectionObserver(entries => {
-  entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(()=>e.target.classList.add('in'), i*70); });
-}, { threshold: 0.07 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    // 3. Animate Pills In
+    setTimeout(() => {
+      const pills = document.getElementById('pill-container');
+      pills.classList.remove('opacity-0', 'translate-y-2');
+      pills.classList.add('opacity-100', 'translate-y-0');
+    }, 400);
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
-    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
-  });
-});
+    // 4. Copy Email to Clipboard
+    const copyBtn = document.getElementById('copy-email-btn');
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText("sameer.ray.work.official@gmail.com")
+        .then(() => alert("Email copied to clipboard!"))
+        .catch(err => console.error("Could not copy text: ", err));
+    });
 
-function openTab(evt, tabName) {
-  var i, tabcontent, tabbtns;
-  tabcontent = document.getElementsByClassName("tab-content");
-  for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; tabcontent[i].classList.remove('active'); }
-  tabbtns = document.getElementsByClassName("tab-btn");
-  for (i = 0; i < tabbtns.length; i++) { tabbtns[i].classList.remove("active"); }
-  document.getElementById(tabName).style.display = "block";
-  document.getElementById(tabName).classList.add('active');
-  evt.currentTarget.classList.add("active");
-}
-</script>
+    // 5. Video Mouse Scrubbing
+    const video = document.getElementById('bg-video');
+    let prevX = null;
+    let currentTargetTime = 0;
+    let isSeeking = false;
+    let pendingTime = null;
+    const SENSITIVITY = 0.8;
+
+    window.addEventListener('mousemove', (e) => {
+      if (!video || isNaN(video.duration)) return;
+
+      const currentX = e.clientX;
+      if (prevX === null) {
+        prevX = currentX;
+        return;
+      }
+
+      const delta = currentX - prevX;
+      prevX = currentX;
+
+      const timeDelta = (delta / window.innerWidth) * SENSITIVITY * video.duration;
+      currentTargetTime = Math.max(0, Math.min(video.duration, currentTargetTime + timeDelta));
+
+      if (!isSeeking) {
+        seekTo(currentTargetTime);
+      } else {
+        pendingTime = currentTargetTime;
+      }
+    });
+
+    function seekTo(time) {
+      isSeeking = true;
+      video.currentTime = time;
+    }
+
+    video.addEventListener('seeked', () => {
+      isSeeking = false;
+      if (pendingTime !== null) {
+        const time = pendingTime;
+        pendingTime = null;
+        seekTo(time);
+      }
+    });
+  </script>
 </body>
 </html>
