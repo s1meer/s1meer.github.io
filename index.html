@@ -160,4 +160,538 @@ h2.sec { font: 800 clamp(32px, 5vw, 56px)/1.1 var(--f-display); margin: 12px 0 0
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
 }
-.brand { display: flex; align-items: center; gap: 12px; color: var(--gold-hi); font: 800 16px var(--f-display); letter-spacing: 0.1em
+.brand { display: flex; align-items: center; gap: 12px; color: var(--gold-hi); font: 800 16px var(--f-display); letter-spacing: 0.1em; text-transform: uppercase; }
+.brand i { width: 34px; height: 34px; border-radius: 8px; background: var(--gold-grad); color: #000; display: grid; place-items: center; font: 800 14px var(--f-display); box-shadow: 0 3px 0 var(--gold-dark); }
+.links { display: flex; align-items: center; gap: 28px; font-weight: 500; font-size: 15px; }
+.links a { color: var(--text-main); }
+.links a:hover { color: var(--gold-glow); transform: translateY(-2px); }
+.burger { display: none; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--glass); color: var(--text-main); cursor: pointer; place-items: center; box-shadow: 0 3px 0 rgba(0,0,0,0.5); }
+.burger:active { transform: translateY(3px); box-shadow: 0 0 0 transparent; }
+
+@media (max-width: 880px) { .links { display: none; } .burger { display: grid; } }
+.overlay { position: fixed; inset: 0; z-index: 45; background: rgba(7, 9, 19, 0.98); padding: 120px 24px 40px; display: flex; flex-direction: column; gap: 16px; text-align: center; }
+.overlay a { font: 800 36px/1.2 var(--f-display); color: var(--text-main); }
+
+/* HERO - 3D Presentation Board */
+.hero { padding-block: 160px 80px; perspective: 1200px; }
+.hero-glass-board {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+  background: linear-gradient(135deg, rgba(26,29,54,0.8) 0%, rgba(16,19,42,0.9) 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: 32px;
+  padding: 60px;
+  /* 3D Board Extrusion */
+  box-shadow: 
+    inset 0 2px 2px rgba(255,255,255,0.1),
+    0 10px 0 #0C0F22,
+    0 11px 0 var(--gold-dark),
+    0 30px 60px rgba(0,0,0,0.7);
+  transform-style: preserve-3d;
+  /* Subtle dynamic tilt */
+  animation: floatBoard 8s ease-in-out infinite;
+}
+@keyframes floatBoard {
+  0%, 100% { transform: rotateX(2deg) rotateY(-1deg) translateY(0); }
+  50% { transform: rotateX(-1deg) rotateY(1deg) translateY(-10px); }
+}
+
+@media (max-width: 980px) { 
+  .hero-glass-board { grid-template-columns: 1fr; padding: 40px 24px; animation: none; transform: none; } 
+  .hero { padding-top: 120px; }
+}
+
+.namaste { font: 800 28px var(--f-deva); background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 4px rgba(255,176,46,0.3)); margin: 0 0 10px; display: inline-block; }
+h1 { font: 800 clamp(42px, 5vw, 68px)/1.05 var(--f-display); margin: 0; text-transform: uppercase; text-shadow: 2px 4px 10px rgba(0,0,0,0.5); }
+.hero-subtitle { font-size: clamp(20px, 2vw, 26px); color: var(--gold-glow); font-family: var(--f-display); font-weight: 700; margin: 8px 0 24px; letter-spacing: 0.05em; }
+.type { font-size: 18px; line-height: 1.6; color: var(--text-muted); min-height: 5em; max-width: 500px; margin: 0 0 32px; }
+.caret { display: inline-block; width: 3px; height: 1.1em; background: var(--gold-glow); vertical-align: text-bottom; margin-left: 4px; box-shadow: 0 0 8px var(--gold-glow); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.pills { display: flex; flex-wrap: wrap; gap: 16px; }
+
+/* 3D Isometric SVG Scene */
+.scene-container { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; transform: translateZ(40px); }
+.scene { width: 130%; max-width: 600px; height: auto; filter: drop-shadow(0 30px 40px rgba(0,0,0,0.6)); overflow: visible; }
+.isometric-glow { animation: pulseGlow 3s infinite alternate; }
+@keyframes pulseGlow { 0% { filter: drop-shadow(0 0 10px var(--snow-glow)); } 100% { filter: drop-shadow(0 0 25px var(--snow)); } }
+.data-stream { stroke-dasharray: 100; animation: dash 3s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -200; } }
+.flag { animation: flap 2s ease-in-out infinite alternate; transform-origin: top; }
+.flag:nth-child(2n) { animation-delay: 0.3s; }
+.flag:nth-child(3n) { animation-delay: 0.6s; }
+@keyframes flap { 0% { transform: skewX(0deg) rotate(0deg); } 100% { transform: skewX(-10deg) rotate(-2deg); } }
+.cloud { animation: floatCloud 10s ease-in-out infinite; }
+@keyframes floatCloud { 50% { transform: translateY(-15px) translateX(10px); } }
+
+/* Section Styles */
+section.s { padding-block: 100px 40px; }
+
+/* 3D Rows (Experience / Consulting) */
+.rows { margin-top: 48px; display: flex; flex-direction: column; gap: 24px; }
+.row {
+  display: grid; grid-template-columns: 240px 1fr; gap: 24px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px; padding: 32px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 24px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+.row:hover { transform: translateY(-5px); border-color: var(--gold-glow); box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,176,46,0.05); }
+@media (max-width: 760px) { .row { grid-template-columns: 1fr; } }
+.row .k { color: var(--gold-hi); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+.row h3 { font: 800 24px/1.2 var(--f-display); margin: 0 0 12px; }
+.row p { margin: 0; color: var(--text-muted); }
+.row .acts { margin-top: 20px; display: flex; gap: 12px; }
+
+/* 3D Project Cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-top: 48px; perspective: 1000px; }
+.card {
+  background: linear-gradient(180deg, #1A1D36, #10132A);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px; padding: 32px;
+  display: flex; flex-direction: column; gap: 16px;
+  /* Thick card extrusion */
+  box-shadow: 
+    inset 0 2px 0 rgba(255,255,255,0.1),
+    0 8px 0 #0C0F22,
+    0 15px 30px rgba(0,0,0,0.6);
+  transform-style: preserve-3d;
+  transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.card:hover {
+  transform: translateY(-10px) rotateX(2deg);
+  border-color: var(--gold-glow);
+  box-shadow: 
+    inset 0 2px 0 rgba(255,255,255,0.2),
+    0 12px 0 #0C0F22,
+    0 13px 0 var(--gold-dark),
+    0 30px 50px rgba(0,0,0,0.8),
+    0 0 30px rgba(255,176,46,0.2);
+}
+.card h3 { font: 800 26px/1.2 var(--f-display); margin: 0; color: var(--text-main); transform: translateZ(30px); }
+.card p { margin: 0; color: var(--text-muted); font-size: 16px; transform: translateZ(20px); }
+.card .stack { margin-top: auto; color: var(--gold-glow); font-size: 13px; font-weight: 700; transform: translateZ(20px); }
+.card .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.feature { 
+  grid-column: 1 / -1; 
+  background: linear-gradient(135deg, rgba(255,176,46,0.1) 0%, rgba(26,29,54,0.9) 50%);
+  border: 2px solid var(--gold-dark);
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;
+}
+@media (max-width: 820px) { .feature { grid-template-columns: 1fr; } }
+.feature .scope { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; transform: translateZ(20px); }
+.feature .scope li { 
+  background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); 
+  padding: 16px; border-radius: 12px; display: flex; gap: 16px; align-items: center;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.5);
+}
+.feature .scope b { color: var(--gold-glow); font-size: 12px; background: rgba(255,176,46,0.1); padding: 4px 10px; border-radius: 6px; letter-spacing: 0.1em; }
+.badge { display: inline-block; padding: 6px 14px; border-radius: 8px; background: var(--gold-grad); color: #000; font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; box-shadow: 0 2px 0 var(--gold-dark); transform: translateZ(40px); }
+
+/* Extruded Skill Chips */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 48px; }
+.skills h3 { font-size: 15px; font-weight: 700; color: var(--gold-hi); margin: 0 0 16px; text-transform: uppercase; letter-spacing: 0.1em; }
+.chips { display: flex; flex-wrap: wrap; gap: 12px; }
+.chips span {
+  padding: 12px 20px; border-radius: 12px;
+  background: var(--obsidian);
+  border: 1px solid var(--glass-border);
+  font-size: 15px; font-weight: 700; color: var(--text-main);
+  box-shadow: 0 4px 0 #0C0F22, 0 6px 10px rgba(0,0,0,0.5);
+  transition: 0.2s; cursor: default;
+}
+.chips span:hover { transform: translateY(2px); box-shadow: 0 2px 0 #0C0F22, 0 4px 5px rgba(0,0,0,0.5); border-color: var(--gold-glow); color: var(--gold-glow); }
+
+/* Footer & Contact */
+.contact-card { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 16px; }
+.foot { padding-block: 60px 140px; color: var(--text-muted); font-size: 15px; display: flex; justify-content: space-between; border-top: 1px solid var(--glass-border); margin-top: 80px; }
+
+/* 3D Prayer Wheel / Guide Widget */
+.dock-btn {
+  position: fixed; z-index: 60; right: 24px; bottom: 24px;
+  display: flex; align-items: center; gap: 12px; padding: 8px 24px 8px 10px;
+  border-radius: 999px; border: 1px solid var(--gold-hi);
+  background: linear-gradient(180deg, #2A1F0D, #1A1205);
+  color: var(--gold-hi); font: 800 15px var(--f-display); cursor: pointer;
+  /* Thick widget extrusion */
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 6px 0 var(--gold-dark), 0 20px 40px rgba(0,0,0,0.8);
+  transition: 0.2s;
+}
+.dock-btn:hover { transform: translateY(2px); box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 4px 0 var(--gold-dark), 0 15px 30px rgba(0,0,0,0.8); }
+.dock-btn:active { transform: translateY(6px); box-shadow: 0 0 0 transparent; }
+.dock-btn svg { width: 48px; height: 48px; border-radius: 50%; background: var(--gold-grad); border: 2px solid #1A1205; }
+
+.panel {
+  position: fixed; z-index: 70; right: 24px; bottom: 90px;
+  width: min(400px, calc(100vw - 48px)); max-height: calc(100vh - 120px); overflow-y: auto;
+  border-radius: 28px; border: 2px solid var(--gold-dark);
+  background: linear-gradient(180deg, rgba(26,29,54,0.95), rgba(16,19,42,0.98));
+  backdrop-filter: blur(20px);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.1), 0 10px 0 #0C0F22, 0 30px 80px rgba(0,0,0,0.9);
+  padding: 24px; display: flex; flex-direction: column; gap: 16px;
+  transform-origin: bottom right; animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes popUp { from { opacity: 0; transform: scale(0.8) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+.panel .bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 16px; }
+.panel .bar b { font: 800 18px var(--f-display); color: var(--gold-glow); text-transform: uppercase; letter-spacing: 0.05em; }
+.x { width: 36px; height: 36px; border-radius: 10px; border: none; background: var(--glass); color: #fff; cursor: pointer; font-size: 24px; line-height: 1; box-shadow: 0 4px 0 #0C0F22; }
+.x:active { transform: translateY(4px); box-shadow: none; }
+
+.bubble {
+  position: relative; background: var(--text-main); color: #000;
+  border-radius: 16px; padding: 20px; font-size: 16px; font-weight: 500; min-height: 120px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5); border: 2px solid var(--gold-dark);
+}
+.bubble::after { content: ""; position: absolute; left: 50%; bottom: -10px; width: 20px; height: 20px; margin-left: -10px; background: var(--text-main); border-bottom: 2px solid var(--gold-dark); border-right: 2px solid var(--gold-dark); transform: rotate(45deg); }
+
+.mascot { width: 160px; height: auto; margin: 10px auto 0; display: block; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); animation: floatMascot 4s ease-in-out infinite; }
+@keyframes floatMascot { 50% { transform: translateY(-8px); } }
+.eye { transform-origin: center; animation: blink 4s infinite; }
+.mouth-open { transform-origin: center; animation: talk 0.2s infinite alternate; }
+@keyframes talk { 0% { transform: scaleY(0.2); } 100% { transform: scaleY(1.2); } }
+
+.qs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.q { min-height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--glass); color: var(--text-main); font: 600 14px var(--f-body); cursor: pointer; box-shadow: 0 4px 0 #0C0F22; transition: 0.1s; }
+.q:hover { border-color: var(--gold-glow); transform: translateY(2px); box-shadow: 0 2px 0 #0C0F22; }
+.q:active { transform: translateY(4px); box-shadow: none; }
+.q[aria-pressed="true"] { background: var(--gold-grad); color: #000; border-color: #FFF1D4; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+</head>
+<body>
+
+<!-- Ambient Particles -->
+<div class="particles" aria-hidden="true">
+  <script>
+    for(let i=0; i<30; i++){
+      let p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.animationDelay = Math.random() * 15 + 's';
+      document.querySelector('.particles').appendChild(p);
+    }
+  </script>
+</div>
+
+<!-- 3D Glass Nav -->
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="#top"><i>SR</i><span>Sameer Ray</span></a>
+  <div class="links">
+    <a href="#work-with-me">Consulting</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Tech Stack</a>
+    <a class="btn-3d" style="min-height: 38px; padding: 0 20px; font-size: 13px;" href="#contact">Get in touch</a>
+  </div>
+  <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="overlay">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  </button>
+</nav>
+
+<div class="overlay" id="overlay" hidden>
+  <a href="#work-with-me">Consulting</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Tech Stack</a><a href="#github">GitHub</a><a href="#contact" style="color:var(--gold-glow)">Get in touch</a>
+</div>
+
+<!-- HERO SECTION -->
+<main id="top" class="wrap hero">
+  <div class="hero-glass-board">
+    <div style="transform: translateZ(50px);">
+      <p class="namaste" lang="ne">नमस्ते, म समीर हुँ</p>
+      <h1>Himalayan Scale,</h1>
+      <h2 class="hero-subtitle">Digital Precision.</h2>
+      <p class="type"><span class="sr">Glad you stopped in. I build agentic AI pipelines with Python, Node, and TypeScript. Now, what are we building?</span><span id="typed" aria-hidden="true"></span><span class="caret" id="caret" aria-hidden="true"></span></p>
+      <div class="pills">
+        <a class="btn-3d" href="#work-with-me">Work With Me</a>
+        <button class="btn-ghost-3d" type="button" data-copy="sameer.ray.work.official@gmail.com">
+          <span class="em">Copy Email</span><span class="lbl" aria-live="polite"></span>
+        </button>
+        <a class="btn-ghost-3d" href="https://github.com/s1meer" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    
+    <!-- 3D Isometric Cyber-Himalayan SVG -->
+    <div class="scene-container">
+      <svg class="scene" viewBox="0 0 500 500" aria-label="Isometric 3D Himalayan Stupa with digital data streams">
+        <defs>
+          <linearGradient id="mnt" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D1E1FF"/><stop offset="100%" stop-color="#1A1D36"/></linearGradient>
+          <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFD07A"/><stop offset="100%" stop-color="#C26A12"/></linearGradient>
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+        </defs>
+        
+        <!-- Background Mountain -->
+        <path d="M 50 400 L 250 150 L 450 400 Z" fill="url(#mnt)" opacity="0.6"/>
+        <path d="M 250 150 L 320 280 L 210 260 Z" fill="#8FB8FF" opacity="0.8"/>
+        
+        <!-- Glowing Data Streams (Rivers) -->
+        <path d="M 100 450 C 200 400, 300 480, 450 400" fill="none" stroke="#8FB8FF" stroke-width="4" filter="url(#glow)" class="data-stream"/>
+        <path d="M 80 430 C 180 380, 320 450, 480 370" fill="none" stroke="#FFB02E" stroke-width="2" filter="url(#glow)" class="data-stream" style="animation-delay: 1s;"/>
+        
+        <!-- Isometric Stupa Base / Server Racks -->
+        <g transform="translate(250, 350)">
+          <!-- Base 1 -->
+          <polygon points="0,0 -80,-40 0,-80 80,-40" fill="#10132A" stroke="#FFB02E" stroke-width="2"/>
+          <polygon points="-80,-40 0,0 0,40 -80,0" fill="#0C0F22" stroke="#FFB02E" stroke-width="2"/>
+          <polygon points="80,-40 0,0 0,40 80,0" fill="#1A1D36" stroke="#FFB02E" stroke-width="2"/>
+          
+          <!-- Server Lights -->
+          <circle cx="-40" cy="-10" r="3" fill="#8FB8FF" filter="url(#glow)"/>
+          <circle cx="-20" cy="0" r="3" fill="#FFB02E" filter="url(#glow)"/>
+          <circle cx="40" cy="-10" r="3" fill="#8FB8FF" filter="url(#glow)"/>
+          
+          <!-- Base 2 (Tiered) -->
+          <polygon points="0,-30 -50,-55 0,-80 50,-55" fill="#10132A" stroke="#FFD07A" stroke-width="1.5"/>
+          <polygon points="-50,-55 0,-30 0,-10 -50,-35" fill="#0C0F22"/>
+          <polygon points="50,-55 0,-30 0,-10 50,-35" fill="#1A1D36"/>
+          
+          <!-- Dome / Stupa Top -->
+          <path d="M -30,-65 C -30,-110, 30,-110, 30,-65 Z" fill="url(#gold)"/>
+          <!-- Eyes of Buddha (Abstract tech style) -->
+          <rect x="-15" y="-85" width="8" height="4" fill="#10132A"/>
+          <rect x="7" y="-85" width="8" height="4" fill="#10132A"/>
+          <!-- Spire -->
+          <polygon points="-5,-95 0,-150 5,-95" fill="url(#gold)"/>
+        </g>
+
+        <!-- Floating Cloud / API symbol -->
+        <g class="cloud" transform="translate(80, 180)">
+          <path d="M 0,0 C -20,0 -20,-30 0,-30 C 10,-50 40,-50 50,-30 C 70,-30 70,0 50,0 Z" fill="rgba(143, 184, 255, 0.15)" stroke="#8FB8FF" stroke-width="2" filter="url(#glow)"/>
+          <text x="12" y="-12" fill="#8FB8FF" font-family="sans-serif" font-weight="bold" font-size="12">API</text>
+        </g>
+        <g class="cloud" transform="translate(350, 120)" style="animation-delay: -5s; transform: scale(0.8);">
+          <path d="M 0,0 C -20,0 -20,-30 0,-30 C 10,-50 40,-50 50,-30 C 70,-30 70,0 50,0 Z" fill="rgba(255, 176, 46, 0.15)" stroke="#FFB02E" stroke-width="2" filter="url(#glow)"/>
+        </g>
+
+        <!-- Prayer Flags (Lungta) -->
+        <g transform="translate(100, 250)">
+          <path d="M 0,0 Q 100,50 200,-20" fill="none" stroke="#A3A6C2" stroke-width="1"/>
+          <polygon points="10,5 20,25 30,8" fill="#3B6FD8" class="flag"/>
+          <polygon points="40,16 50,36 60,18" fill="#F4EFE6" class="flag"/>
+          <polygon points="70,25 80,45 90,26" fill="#E0443E" class="flag"/>
+          <polygon points="100,30 110,50 120,30" fill="#3DAA6B" class="flag"/>
+          <polygon points="130,29 140,49 150,28" fill="#FFB02E" class="flag"/>
+          <polygon points="160,22 170,42 180,20" fill="#3B6FD8" class="flag"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</main>
+
+<section id="work-with-me" class="wrap s">
+  <div class="eyebrow">Work with me</div>
+  <h2 class="sec">Consulting & AI Architecture</h2>
+  <p class="lead">Paid consulting, AI agent builds, and training, based on what I've actually shipped, not theory.</p>
+  <div class="rows">
+    <div class="row">
+      <div class="k">Consulting</div>
+      <div>
+        <h3>1:1 Problem-Solving</h3>
+        <p>Stuck on an existing system, or scoping a new one? Bring architecture decisions, debugging sessions, or "should I even build this" calls: full-stack, AI/RAG pipelines, or infra.</p>
+        <div class="acts"><a class="btn-ghost-3d" href="mailto:sameer.ray.work.official@gmail.com">Book a session</a></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="k">Training</div>
+      <div>
+        <h3>AI Agents from Scratch</h3>
+        <p>1:1 or small-cohort paid training on building real agentic systems: tool use, orchestration, RAG grounding, failure and retry handling. Drawn from building production systems like NexMesh.</p>
+        <div class="acts"><a class="btn-ghost-3d" href="mailto:sameer.ray.work.official@gmail.com">Request training</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="wrap s">
+  <div class="eyebrow">Selected work</div>
+  <h2 class="sec">Things I built and shipped</h2>
+  <div class="cards">
+    <article class="card feature">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div><span class="badge">Client work</span></div>
+        <div class="head"><h3>KATHA Studio</h3></div>
+        <p>Technical setup and launch of the website for a boutique brand studio in Kathmandu. I took the site from files to a live, secure address.</p>
+        <div class="stack">cPanel · DNS · SSL · Freelance</div>
+        <div style="margin-top:10px"><a class="btn-3d" href="https://katha-studio.com/" target="_blank">Visit Live Site</a></div>
+      </div>
+      <ul class="scope">
+        <li><b>HOSTING</b><span>Configuration and deployment on cPanel</span></li>
+        <li><b>DOMAIN</b><span>Domain mapping and DNS config</span></li>
+        <li><b>SECURITY</b><span>HTTPS and SSL certificate setup</span></li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <div class="head"><h3>Bulk URL Health Checker</h3><a href="https://github.com/s1meer" target="_blank" class="badge" style="background:var(--glass);color:#fff">GitHub</a></div>
+      <p>A distributed background-job system built with Fastify, BullMQ, Postgres, and Redis. Features custom Redis-backed distributed semaphore for global concurrency limits.</p>
+      <div class="stack">Fastify · BullMQ · PostgreSQL · Redis</div>
+    </article>
+    <article class="card">
+      <div class="head"><h3>ShikshaHub</h3><a href="https://shikshahub.app" target="_blank" class="badge" style="background:var(--glass);color:#fff">Visit</a></div>
+      <p>A bilingual EdTech platform with retrieval-augmented Q&A on course content: pgvector embedding store, OpenAI embeddings, and Groq-based grounded generation.</p>
+      <div class="stack">Next.js · Supabase · pgvector · Groq</div>
+    </article>
+    <article class="card">
+      <div class="head"><h3>NexMesh</h3><a href="https://github.com/s1meer/nexmesh" target="_blank" class="badge" style="background:var(--glass);color:#fff">GitHub</a></div>
+      <p>A 7,100-line distributed multi-agent orchestration system. Autonomous agents coordinate over a message-passing layer, each with independent failure handling.</p>
+      <div class="stack">Python · Multi-agent orchestration</div>
+    </article>
+  </div>
+</section>
+
+<section id="skills" class="wrap s">
+  <div class="eyebrow">Tech stack</div>
+  <h2 class="sec">Arsenal</h2>
+  <div class="skills">
+    <div><h3>Languages</h3><div class="chips"><span>TypeScript</span><span>JavaScript</span><span>Python</span><span>SQL</span></div></div>
+    <div><h3>Frontend</h3><div class="chips"><span>React</span><span>Next.js</span></div></div>
+    <div><h3>Backend</h3><div class="chips"><span>Node.js</span><span>FastAPI</span><span>Express</span></div></div>
+    <div><h3>Data & Infra</h3><div class="chips"><span>PostgreSQL</span><span>Redis</span><span>Docker</span><span>AWS</span></div></div>
+    <div><h3>AI Engine</h3><div class="chips"><span>RAG</span><span>LLM Eval</span><span>pgvector</span><span>OpenAI</span></div></div>
+  </div>
+</section>
+
+<section id="contact" class="wrap s">
+  <div class="eyebrow">Contact</div>
+  <h2 class="sec">Initiate Uplink</h2>
+  <p class="lead">Based in Kathmandu. Open to full-time roles, contract work, and interesting architectures. Remote or hybrid.</p>
+  <div class="contact-card">
+    <button class="btn-3d" type="button" data-copy="sameer.ray.work.official@gmail.com">
+      <span class="em">sameer.ray.work.official@gmail.com</span><span class="lbl" aria-live="polite"></span>
+    </button>
+    <a class="btn-ghost-3d" href="https://linkedin.com/in/sameer-ray-5429a8199" target="_blank">LinkedIn</a>
+    <a class="btn-ghost-3d" href="tel:+9779800851725">+977-9800851725</a>
+  </div>
+</section>
+
+<footer class="wrap foot">
+  <span>© 2026 Sameer Ray · Kathmandu, Nepal</span>
+  <span>Himalayan Scale, Digital Precision.</span>
+</footer>
+
+<!-- 3D Brass Widget Guide -->
+<button class="dock-btn" id="dockBtn" type="button" aria-expanded="false" aria-controls="panel">
+  <svg viewBox="0 0 240 290" aria-hidden="true">
+    <ellipse cx="120" cy="130" rx="58" ry="66" fill="#D39466"/>
+    <path d="M60 122 C50 60 92 34 126 36 C170 38 192 76 180 122 C172 98 152 82 122 82 C92 84 70 98 60 122 Z" fill="#1B1722"/>
+    <circle cx="95" cy="126" r="20" fill="none" stroke="#1B1722" stroke-width="6"/>
+    <circle cx="145" cy="126" r="20" fill="none" stroke="#1B1722" stroke-width="6"/>
+    <path d="M100 168 Q120 188 140 168" stroke="#5A1E1E" stroke-width="7" fill="none" stroke-linecap="round"/>
+  </svg>
+  <span>Ask Guide</span>
+</button>
+
+<div class="panel" id="panel" role="dialog" aria-label="Site guide" hidden>
+  <div class="bar"><b>Cyber-Guide</b><button class="x" id="closeBtn" type="button" aria-label="Close guide">×</button></div>
+  <div class="bubble"><span id="gtext" aria-hidden="true"></span></div>
+  <div class="sr" id="glive" aria-live="polite"></div>
+  
+  <svg class="mascot" viewBox="0 0 240 290">
+    <path d="M24 290 C24 238 66 214 120 214 C174 214 216 238 216 290 Z" fill="#232A63"/>
+    <path d="M92 216 Q120 246 148 216 L148 228 Q120 258 92 228 Z" fill="#151938"/>
+    <path d="M104 240 L101 270" stroke="#FFB02E" stroke-width="4" stroke-linecap="round"/><path d="M136 240 L139 270" stroke="#FFB02E" stroke-width="4" stroke-linecap="round"/>
+    <rect x="104" y="184" width="32" height="42" rx="12" fill="#B9774B"/>
+    <ellipse cx="120" cy="128" rx="58" ry="66" fill="#D39466"/>
+    <path d="M60 122 C50 60 92 34 126 36 C170 38 192 76 180 122 C172 98 152 82 122 82 C92 84 70 98 60 122 Z" fill="#1A1D36"/>
+    <g class="eye"><ellipse cx="95" cy="126" rx="7" ry="8.5" fill="#1B1722"/><circle cx="97.5" cy="123" r="2.6" fill="#fff"/></g>
+    <g class="eye"><ellipse cx="145" cy="126" rx="7" ry="8.5" fill="#1B1722"/><circle cx="147.5" cy="123" r="2.6" fill="#fff"/></g>
+    <circle cx="95" cy="126" r="20" fill="rgba(255,176,46,0.1)" stroke="#FFB02E" stroke-width="3"/><circle cx="145" cy="126" r="20" fill="rgba(255,176,46,0.1)" stroke="#FFB02E" stroke-width="3"/>
+    <ellipse class="mouth-open" id="mOpen" cx="120" cy="174" rx="13" ry="10" fill="#5A1E1E" hidden/>
+    <path id="mRest" d="M100 168 Q120 188 140 168" stroke="#5A1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </svg>
+  
+  <div class="qs" id="qs">
+    <button class="q" type="button" data-k="projects">Show projects</button>
+    <button class="q" type="button" data-k="experience">Experience</button>
+    <button class="q" type="button" data-k="skills">Skills</button>
+    <button class="q" type="button" data-k="hire">Hire him</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Mobile menu */
+  var burger = document.getElementById('burger'), overlay = document.getElementById('overlay');
+  function setMenu(open){
+    overlay.hidden = !open;
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  burger.addEventListener('click', function(){ setMenu(overlay.hidden); });
+  overlay.addEventListener('click', function(e){ if(e.target.tagName === 'A') setMenu(false); });
+
+  /* Hero typewriter */
+  var heroText = "Glad you stopped in. I build agentic AI pipelines with Python, Node, and TypeScript. Now, what are we building?";
+  var typedEl = document.getElementById('typed'), caret = document.getElementById('caret');
+  if(reduce){ typedEl.textContent = heroText; caret.hidden = true; }
+  else {
+    var hi = 0;
+    setTimeout(function(){
+      var t = setInterval(function(){
+        hi++; typedEl.textContent = heroText.slice(0, hi);
+        if(hi >= heroText.length){ clearInterval(t); caret.hidden = true; }
+      }, 35);
+    }, 800);
+  }
+
+  /* Copy email */
+  function wireCopy(btn){
+    var lbl = btn.querySelector('.lbl'), text = btn.getAttribute('data-copy');
+    function note(msg){ if(!lbl) return; lbl.textContent = ' · ' + msg; setTimeout(()=> lbl.textContent = '', 2000); }
+    btn.addEventListener('click', function(){
+      try{
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(()=> note('Copied!'));
+        }
+      }catch(e){}
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(wireCopy);
+
+  /* 3D Guide Mascot */
+  var REPLIES = {
+    hello: "Namaste! I'm the digital guide for Sameer Ray, an AI engineer from Kathmandu building robust backends and AI agents. What do you want to explore?",
+    projects: "Check out the KATHA Studio launch, ShikshaHub with RAG, and NexMesh, his multi-agent orchestration system.",
+    experience: "He recently deployed KATHA Studio, trained models at Invisible Tech, and built data pipelines at WorldLink.",
+    skills: "Obsidian-solid backends with Node, Python, Postgres, and AWS. AI pipelines using RAG, pgvector, and Groq.",
+    hire: "Grab his email from the 'Get in touch' section below. He does full-stack architecture, consulting, and AI training."
+  };
+  
+  var dockBtn = document.getElementById('dockBtn'), panel = document.getElementById('panel'), closeBtn = document.getElementById('closeBtn');
+  var gtext = document.getElementById('gtext'), glive = document.getElementById('glive');
+  var mOpen = document.getElementById('mOpen'), mRest = document.getElementById('mRest');
+  var qs = document.getElementById('qs');
+  var timer = null, started = false, typing = false;
+
+  function syncMouth(){ mOpen.hidden = !typing; mRest.style.display = typing ? 'none' : ''; }
+  
+  function say(key){
+    var text = REPLIES[key];
+    clearInterval(timer);
+    Array.from(qs.children).forEach(b => b.setAttribute('aria-pressed', b.dataset.k === key ? 'true' : 'false'));
+    glive.textContent = text;
+    
+    if(reduce){ gtext.textContent = text; typing = false; syncMouth(); }
+    else {
+      var n = 0; typing = true; gtext.textContent = ''; syncMouth();
+      timer = setInterval(function(){
+        n += 2; gtext.textContent = text.slice(0, n);
+        if(n >= text.length){ clearInterval(timer); typing = false; syncMouth(); }
+      }, 25);
+    }
+  }
+
+  dockBtn.addEventListener('click', function(){
+    panel.hidden = false; dockBtn.hidden = true; dockBtn.setAttribute('aria-expanded','true');
+    if(!started){ started = true; say('hello'); }
+  });
+  closeBtn.addEventListener('click', function(){
+    panel.hidden = true; dockBtn.hidden = false; dockBtn.setAttribute('aria-expanded','false');
+  });
+  qs.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(b) say(b.getAttribute('data-k'));
+  });
+})();
+</script>
+</body>
+</html>
